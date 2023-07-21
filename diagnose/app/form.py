@@ -1,12 +1,22 @@
 # forms.py
 
 from django import forms
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth import get_user_model
 
-class UserRegistrationForm(UserCreationForm):
-    email = forms.EmailField()
+class ImageUploadForm(forms.Form):
+    image = forms.ImageField()
 
-    class Meta:
-        model = get_user_model()
-        fields = ['username', 'email', 'password1', 'password2']
+MEDICAL_CONDITION_CHOICES = [
+    ('brain_tumor', 'Brain Tumor'),
+    ('chest_xray', 'Chest X-ray'),
+    ('melanoma', 'Melanoma'),
+]
+
+class MedicalConditionForm(forms.Form):
+    medical_condition = forms.ChoiceField(
+        # choices=MEDICAL_CONDITION_CHOICES,
+        # widget=forms.Select(attrs={'class': 'form-control'})
+        widget=forms.Select(choices=MEDICAL_CONDITION_CHOICES)
+    )
+
+
+    # favorite_fruit= forms.CharField(label='What is your favorite fruit?', widget=forms.Select(choices=FRUIT_CHOICES))

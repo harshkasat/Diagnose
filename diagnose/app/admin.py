@@ -1,6 +1,5 @@
 from django.contrib import admin
-from .models import CustomUserManager, CustomUser
+from .models import UserProfileImage
 
 # Register your models here.
-admin.site.register(CustomUser)
-admin.site.register(CustomUserManager)
+admin.site.register(UserProfileImage)

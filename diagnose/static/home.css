@@ -367,3 +367,60 @@ input[type="submit"]:active
 {
   opacity: 0.6;
 }
+
+section .medical_condition {
+  position: absolute;
+  left: 50%;
+  top: 30%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+section .signin .medical_condition input 
+{
+  position: relative;
+  width: 100%;
+  background: #333;
+  border: none;
+  outline: none;
+  padding: 25px 10px 7.5px;
+  border-radius: 4px;
+  color: #0f0;
+  font-weight: 500;
+  font-size: 1em;
+}
+
+.signin .medical_condition input[type="submit"]
+{
+  padding: 10px;
+  background: #0f0;
+  color: #000;
+  font-weight: 600;
+  font-size: 1.35em;
+  letter-spacing: 0.05em;
+  cursor: pointer;
+}
+
+section .medical_condition i 
+{
+  position: absolute;
+  left: 0;
+  padding: 15px 10px;
+  font-style: normal;
+  color: #aaa;
+  transition: 0.5s;
+  pointer-events: none;
+}
+
+.signin .medical_condition input:focus ~ i,
+.signin .medical_condition input:valid ~ i
+{
+  transform: translateY(-7.5px);
+  font-size: 0.8em;
+  color: #fff;
+}
+
+input[type="submit"]:active
+{
+  opacity: 0.6;
+}
