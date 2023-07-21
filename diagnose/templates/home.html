@@ -21,24 +21,21 @@
           </div>
 
           <div class="img-path">
+            <form action="" method="post">
+              {% csrf_token %}
               <label for="images" class="drop-container" id="dropcontainer">
                 <span class="drop-title">Drop files here</span>
                 or
-                <input type="file" id="images" accept="image/*" required>
+                <input type="file" id="images" accept="image/*" required name="img"> 
               </label>
-          </div>
-
-          <div class="content">
-              <form action="" method="post">
-                {% csrf_token %}
-                <div class="form"> 
+              <div class="form"> 
                   <div class="inputBox"> 
         
                     <input type="submit" value="Submit"> 
     
                   </div>
                 </div>
-              </form>
+            </form>
           </div>
             
             

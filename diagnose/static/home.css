@@ -314,7 +314,7 @@ input[type=file]::file-selector-button:hover {
 section .inputBox {
   position: absolute;
   left: 51%;
-  top: 75%;
+  top: 130%;
   transform: translate(-75%, -75%);
   z-index: 1000;
 }

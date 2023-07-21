@@ -10,7 +10,7 @@ def prediction(image_path):
     model = tf.keras.models.load_model('Brain Tumor savedmodel//2019-06-07_VGG_model.h5')
 
 
-    img_path = image_path # Replace with the path to your input image
+    img_path = f'{image_path}' # Replace with the path to your input image
     img = image.load_img(img_path, target_size=(224, 224))  # Resize the image to match the model input size
 
 

@@ -3,10 +3,24 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from app.brain_tumor import prediction
+from django.contrib.auth.forms import UserCreationForm
+import os
+from django.http import JsonResponse
+from app.form import UserRegistrationForm
+
+
 
 @login_required(login_url='login')
 def home(request):
-
+    if request.method == 'POST' and request.FILES.get('img'):
+        image = request.FILES['image']
+        image_path = os.path.join('temp', image.name)
+        with open(image_path, 'wb') as f:
+            for chunk in image.chunks():
+                f.write(chunk)
+        prediction = prediction(image_path)
+        os.remove(image_path)
+        return JsonResponse({"prediction":prediction})
     return render(request, 'home.html')
 
 
@@ -25,12 +39,12 @@ def loginPage(request):
 
 def signups(request):
     if request.method=='POST':
-        username=request.POST.get('username')
-        password=request.POST.get('password')
-
-        my_user=User.objects.create_user(username=username,password=password)
-        my_user.save()
-        return redirect('login')
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            my_user.save()
+            return redirect('login')
+    else:
+        form = UserRegistrationForm()
     return render (request,'signups.html')
 
 
