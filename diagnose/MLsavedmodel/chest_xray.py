@@ -7,11 +7,11 @@ import numpy as np
 
 def chest_xray_predictions(image_path):
     # Using save_model
-    model = tf.keras.models.load_model('Savedmodel//chest_xray.h5')
+    model = tf.keras.models.load_model('Z:\MLH Project\Savedmodel\chest_xray.h5')
 
 
-    # image_path = f'{image_path}' # Replace with the path to your input image
-    img = image.load_img(image_path, target_size=(224, 224))  # Resize the image to match the model input size
+    img_path = f'Z:/MLH Project/diagnose{image_path}' # Replace with the path to your input image
+    img = image.load_img(img_path, target_size=(224, 224))  # Resize the image to match the model input size
 
 
     img_array = image.img_to_array(img)

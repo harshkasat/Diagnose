@@ -4,10 +4,12 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth.decorators import login_required
 from MLsavedmodel.brain_tumor import brain_tumor_predictions
 from MLsavedmodel.chest_xray import chest_xray_predictions
+from MLsavedmodel.melanoma_cancer import melanoma_cancer_predictions
+
 from django.contrib.auth.forms import UserCreationForm
 import os
 from django.http import JsonResponse
-from app.form import ImageUploadForm
+from app.form import ImageUploadForm, MedicalConditionForm
 from app.models import UserProfileImage
 
 
@@ -15,21 +17,36 @@ from app.models import UserProfileImage
 
 @login_required(login_url='login')
 def home(request):
-    if request.method == 'POST':
-        form = ImageUploadForm(request.POST, request.FILES)
-        if form.is_valid():
-            user = request.user
-            image = form.cleaned_data['image']
-            # Save the image to the database
-            user_image = UserProfileImage(user=user, image=image)
-            user_image.save()
-            image_paths = user_image.url
-            # prediction = prediction(image)
+    form = ImageUploadForm()
+    medical_form = MedicalConditionForm()
+    if request.method == 'POST' :
+        # if 'form' in request.POST and 'medical_form' in request.POST :
+            # print("inside form and medical_form")
+            form = ImageUploadForm(request.POST, request.FILES)
+            medical_form = MedicalConditionForm(request.POST)
 
-            return HttpResponse({"image_paths":image_paths})  # Replace 'home' with the URL name of your home page view
-    else:
-        form = ImageUploadForm()
-    return render(request, 'home.html', {'form': form})
+            if form.is_valid() and medical_form.is_valid():
+                user = request.user
+                image = form.cleaned_data['image']
+                medical_condition = medical_form.cleaned_data['medical_condition']
+                # Save the image to the database
+                user_image = UserProfileImage(user=user, image=image)
+                user_image.save()
+                # print(user_image.save())
+                image_paths = user_image.image.url
+                print(image_paths)
+                if medical_condition == 'brain_tumor':
+                    prediction = brain_tumor_predictions(image_paths)
+                elif medical_condition == 'chest_xray':
+                    prediction = chest_xray_predictions(image_paths)
+                else :
+                    prediction = melanoma_cancer_predictions(image_paths)
+
+                return JsonResponse({"prediction":prediction,
+                                    "image_path":image_paths})
+        
+    return render(request, 'home.html', {"form": form,
+                                         "medical_form":medical_form})
 
 
 def loginPage(request):

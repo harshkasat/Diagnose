@@ -7,10 +7,10 @@ import numpy as np
 
 def brain_tumor_predictions(image_path):
     # Using save_model
-    model = tf.keras.models.load_model('Savedmodel//brain_tumor.h5')
+    model = tf.keras.models.load_model('Z:\MLH Project\Savedmodel\\brain_tumor.h5')
 
 
-    img_path = f'{image_path}' # Replace with the path to your input image
+    img_path = f'Z:\MLH Project\diagnose{image_path}' # Replace with the path to your input image
     img = image.load_img(img_path, target_size=(224, 224))  # Resize the image to match the model input size
 
 
@@ -33,5 +33,4 @@ def brain_tumor_predictions(image_path):
         return  class_list[0]
     else: 
         return class_list[1]
-
 

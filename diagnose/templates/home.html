@@ -20,7 +20,7 @@
             <a href="https://www.linkedin.com/in/harshkasat/" class="nav" target="_blank">LINKEDIN</a>
           </div>
 
-          <div class="medical_condition">
+          <!-- <div class="medical_condition">
             <form>
               {% csrf_token %}
               <label for="id_medical_condition">Select Medical Condition :</label>
@@ -30,11 +30,14 @@
                   {% endfor %}
               </select>
           </form>
-            </select>
+            </select> -->
 
           <div class="img-path">
             <form action="" method="post" enctype="multipart/form-data">
               {% csrf_token %}
+
+              {{medical_form.as_p}}
+
               <label for="images" class="drop-container" id="dropcontainer">
                 <span class="drop-title">Drop files here</span>
                 or
