@@ -34,13 +34,20 @@ def home(request):
                 user_image.save()
                 # print(user_image.save())
                 image_paths = user_image.image.url
+                # diagnose\templates\disease_info
                 print(image_paths)
                 if medical_condition == 'brain_tumor':
                     prediction = brain_tumor_predictions(image_paths)
+                    return render(request, 'app/brain_tumor.html', {'predictions': prediction,
+                                                                'image_paths': image_paths})
                 elif medical_condition == 'chest_xray':
                     prediction = chest_xray_predictions(image_paths)
+                    return render(request, 'app/chest_xray.html', {'predictions': prediction,
+                                                                'image_paths': image_paths})
                 else :
                     prediction = melanoma_cancer_predictions(image_paths)
+                    return render(request, 'app/melanoma_cancer.html', {'predictions': prediction,
+                                                                'image_paths': image_paths})
 
                 return JsonResponse({"prediction":prediction,
                                     "image_path":image_paths})

@@ -12,4 +12,4 @@ MEDICAL_CONDITION_CHOICES = [
 ]
 
 class MedicalConditionForm(forms.Form):
-    medical_condition = forms.ChoiceField(choices=MEDICAL_CONDITION_CHOICES, label='Medical Condition')
+    medical_condition = forms.ChoiceField(choices=MEDICAL_CONDITION_CHOICES, label='Medical Condition',widget=forms.Select(attrs={'id': 'option'}))
