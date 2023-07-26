@@ -26,7 +26,7 @@ def brain_tumor_predictions(image_path):
     confi = np.max(predictions, axis=1)
 
 
-    class_list = ["Brain Tumor", "Not Brain Tumor"]
+    class_list = ["You have Brain Tumor", "You Don't have Brain Tumor"]
 
 
     if predicted_class.size >0.5 and confi > 0.9:

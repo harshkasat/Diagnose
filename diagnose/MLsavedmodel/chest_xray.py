@@ -26,7 +26,7 @@ def chest_xray_predictions(image_path):
     confi = np.max(predictions, axis=1)
 
 
-    class_list = ["Pneumonia", "Not Pneumonia"]
+    class_list = ["You have Pneumonia", "You Don't have  Pneumonia"]
 
 
     if predicted_class.size >0.5 and confi > 0.9:

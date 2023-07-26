@@ -26,7 +26,7 @@ def melanoma_cancer_predictions(image_path):
     confi = np.max(predictions, axis=1)
 
 
-    class_list = ["Benign", "Malignant"]
+    class_list = ["You have Benign", " You have Malignant"]
 
 
     if predicted_class.size >0.5 and confi > 0.9:
