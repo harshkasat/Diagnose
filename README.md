@@ -10,7 +10,7 @@ This web application is built using Django and utilizes pre-trained machine lear
 4. Technologies Used
 5. Model Information
 6. Data Sources
-7. Acknowledgments
+7. Docker pull
 
 
 ## 1. Installation
@@ -57,7 +57,8 @@ This web application is built using Django and utilizes pre-trained machine lear
 - Melanoma Cancer Dataset: [Melanoma Cancer](https://www.kaggle.com/datasets/hasnainjaved/melanoma-skin-cancer-dataset-of-10000-images)
 
 ## 7. Acknowledgments
-- Credits to the dataset providers and creators of the pre-trained models.
+- Install Docker
+- ```docker pull zedmate/python-django ```
 
 
 
